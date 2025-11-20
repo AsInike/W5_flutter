@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
           title: const Text("Favorite cards"),
         ),
         body: Column(
-          children: const [
-            AddToFavorites(),
-            AddToFavorites(),
-            AddToFavorites(),
+          children: [
+            AddToFavorites(isFavorite: false),
+            AddToFavorites(isFavorite: true),
+            AddToFavorites(isFavorite: false),
           ],
         ),
       ),
@@ -27,15 +27,15 @@ class MyApp extends StatelessWidget {
 }
 
 class AddToFavorites extends StatefulWidget {
-  const AddToFavorites({super.key});
+  const AddToFavorites({super.key, required this.isFavorite});
 
+  final bool isFavorite;
   @override
   State<AddToFavorites> createState() => _AddToFavoritesState();
 }
 
 class _AddToFavoritesState extends State<AddToFavorites> {
-  bool isFavorite = false;
-
+  late bool isFavorite = widget.isFavorite;
   void toggleFavorite() {
     setState(() {
       isFavorite = !isFavorite;
